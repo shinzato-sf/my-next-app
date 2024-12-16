@@ -7,7 +7,7 @@ export default function Home() {
 			
 			<div className="flex flex-col  items-center  w-[752] h-[480] bg-white shadow-lg p-4 justify-evenly" >
 			
-				<div className="flex text-5xl mt-8 block justify-center">Next 練習ページ</div>
+				<div className="flex text-5xl mt-8 block justify-center">プロジェクト新規作成</div>
 				<form action="" className="">
 					<div className="flex flex-col items-center justify-center w-[580] h-[80]">
 						<input type="email" className="pl-4 w-[470] h-[38] border-gray-600 border-2 border-solid rounded-lg"/>
@@ -20,7 +20,7 @@ export default function Home() {
 					</div>
 				</form>
 				<button className="w-[160] h-[32] border-gray-600 border-2 border-solid rounded-lg bg-gray-200">
-					<a href="/project/select">
+					<a href="/project/survey">
 						ログイン
 					</a>
 				</button>
