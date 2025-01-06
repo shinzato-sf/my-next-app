@@ -2,20 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	--background: #ffffff;
-	--foreground: #171717;
+.gantt-cell {
+	display: grid;
+	grid-template-columns: 300px 100px 1fr;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
+.gantt-days {
+	display: grid;
+	grid-template-columns: 200px 100px repeat(42, 30px);
 }
 
-body {
-	color: var(--foreground);
-	background: var(--background);
-	font-family: Arial, Helvetica, sans-serif;
+.gantt-bars::after {
+	content: "";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 5px 0 5px 8px;
+	position: absolute;
+	top: calc(50% - 5px);
+	right: -5px;
+}
+
+.today::after {
+	background-color: rgb(253, 126, 20);
+	content: "";
+	display: block;
+	position: absolute;
+	left: calc(50% - 1px);
+	height: 100%;
+	width: 1px;
+	z-index: 1;
 }

@@ -20,7 +20,7 @@ export default function Home() {
 					</div>
 				</form>
 				<button className="w-[160] h-[32] border-gray-600 border-2 border-solid rounded-lg bg-gray-200">
-					<a href="/project/select">
+					<a href="/project/schedule">
 						ログイン
 					</a>
 				</button>
