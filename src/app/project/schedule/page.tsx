@@ -1,8 +1,12 @@
 import Image from "next/image";
-import "@/app/globals.css"
+import React from "react";
 
 export default function Home() {
 
+	const tasks = Array.from({ length: 5 });
+	// 日付データ（1～31日分）
+	const dates = Array.from({ length: 31 }, (_, i) => (i + 1).toString());
+	const days = ["日", "月", "火", "水", "木", "金", "土"]; // 曜日データ
 	return (
 		<div className="flex items-center justify-center bg-gray-100 w-full h-screen">
 			<div className="flex flex-col items-center justify-center w-[1600] h-[800] bg-white shadow-lg p-4 justify-evenly">
@@ -22,64 +26,150 @@ export default function Home() {
 						</div>
 					</div>
 					{/* 表の部分 */}
-					<div className="grid grid-cols-36 grid-rows-6 bg-green-100 w-full h-[300] my-2 p-4">
-						<div className="col-span-12 col-start-1 row-start-1"></div>
-						<div className="col-span-12 col-start-25 row-start-1">１月</div>
-
-						<div className="col-span-12 col-start-1 row-start-2 w-[288]">プロジェクト名</div>
-						<div className="col-start-13 row-start-2 w-[24]">1</div>
-						<div className="col-start-14 row-start-2 w-[24]">2</div>
-						<div className="col-start-15 row-start-2 w-[24]">3</div>
-						<div className="col-start-16 row-start-2 w-[24]">4</div>
-						<div className="col-start-17 row-start-2 w-[24]">5</div>
-						<div className="col-start-18 row-start-2 w-[24]">6</div>
-						<div className="col-start-19 row-start-2 w-[24]">7</div>
-						<div className="col-start-20 row-start-2 w-[24]">8</div>
-						<div className="col-start-21 row-start-2 w-[24]">9</div>
-						<div className="col-start-22 row-start-2 w-[24]">10</div>
-						<div className="col-start-23 row-start-2 w-[24]">11</div>
-						<div className="col-start-24 row-start-2 w-[24]">12</div>
-						<div className="col-start-25 row-start-2 w-[24]">13</div>
-						<div className="col-start-26 row-start-2 w-[24]">14</div>
-						<div className="col-start-27 row-start-2 w-[24]">15</div>
-						<div className="col-start-28 row-start-2 w-[24]">16</div>
-						<div className="col-start-29 row-start-2 w-[24]">17</div>
-						<div className="col-start-30 row-start-2 w-[24]">18</div>
-						<div className="col-start-31 row-start-2 w-[24]">19</div>
-						<div className="col-start-32 row-start-2 w-[24]">20</div>
-						<div className="col-start-33 row-start-2 w-[24]">21</div>
-						<div className="col-start-34 row-start-2 w-[24]">22</div>
-						<div className="col-start-35 row-start-2 w-[24]">23</div>
-						<div className="col-start-36 row-start-2 w-[24]">24</div>
-
-						<div className="col-span-6 col-start-1 row-start-3">タスク名</div>
-						<div className="col-span-2 col-start-7 row-start-3">期間</div>
-						<div className="col-span-4 col-start-9 row-start-3">進捗</div>
-
-						<div className="col-start-13 row-start-3">1</div>
-						<div className="col-start-14 row-start-3">1</div>
-						<div className="col-start-15 row-start-3">1</div>
-						<div className="col-start-16 row-start-3">1</div>
-						<div className="col-start-17 row-start-3">1</div>
-						<div className="col-start-18 row-start-3">1</div>
-						<div className="col-start-19 row-start-3">1</div>
-						<div className="col-start-20 row-start-3">1</div>
-						<div className="col-start-21 row-start-3">1</div>
-						<div className="col-start-22 row-start-3">1</div>
-						<div className="col-start-23 row-start-3">1</div>
-						<div className="col-start-24 row-start-3">1</div>
-						<div className="col-start-25 row-start-3">1</div>
-						<div className="col-start-26 row-start-3">1</div>
-						<div className="col-start-27 row-start-3">1</div>
-						<div className="col-start-28 row-start-3">1</div>
-						<div className="col-start-29 row-start-3">1</div>
-						<div className="col-start-30 row-start-3">1</div>
-						<div className="col-start-31 row-start-3">1</div>
-						<div className="col-start-32 row-start-3">1</div>
-						<div className="col-start-33 row-start-3">1</div>
-						<div className="col-start-34 row-start-3">1</div>
-						<div className="col-start-35 row-start-3">1</div>
-						<div className="col-start-36 row-start-3">1</div>
+					<div className="w-full h-[300px] ml-4">
+						<div
+							className="grid"
+							style={{
+								gridTemplateColumns: `210px 80px 130px auto`,
+								gridTemplateRows: `30px 30px 30px auto`,
+								gridTemplateAreas: `
+									"blank blank blank Month"
+									"project project project scrollable"
+									"title-task title-duration title-task-progress scrollable"
+									${tasks.map((_,i) => 
+										`"task${i} duration${i} task-progress${i} scrollable"`
+									).join(" ")}`,
+							}}
+						>
+							{/* 固定部分 */}
+							<div className="bg-blue-900" style={{ gridArea: "blank" }}></div>
+							<div
+								className="bg-blue-900 p-2 text-white border border-black"
+								style={{ gridArea: "project" }}
+							>
+								プロジェクト
+							</div>
+							<div
+								className="bg-blue-900 p-2 text-white border border-black"
+								style={{ gridArea: "Month" }}
+							>
+								１月
+							</div>
+							<div
+								className="bg-blue-900 p-2 text-white border border-black"
+								style={{ gridArea: "title-task" }}
+							>
+								タスク名
+							</div>
+							<div
+								className="bg-blue-900 p-2 text-white border border-black"
+								style={{ gridArea: "title-duration" }}
+							>
+								期間
+							</div>
+							<div
+								className="bg-blue-900 p-2 text-white border border-black"
+								style={{ gridArea: "title-task-progress" }}
+							>
+								進捗
+							</div>
+							{tasks.map((_, i) => (
+								<React.Fragment key={`react-fragment${i}`}>
+									<div
+										key={`empty-task${i}`}
+										className="px-2 border border-black"
+										style={{ 
+											gridArea: `task${i}`,
+											height: "30px",
+											...(i === tasks.length - 1 && { marginBottom: "16px" }),
+										}}
+									>
+									</div>
+									<div
+										key={`empty-duration${i}`}
+										className="px-2 border border-black"
+										style={{
+											gridArea: `duration${i}`,
+											height: "30px",
+											...(i === tasks.length - 1 && { marginBottom: "16px" }),
+										}}
+									>
+									</div>
+									<div
+										key={`empty-task-progress${i}`}
+										className="px-2 border border-black"
+										style={{
+											gridArea: `task-progress${i}`,
+											height: "30px",
+											...(i === tasks.length - 1 && { marginBottom: "16px" }),
+										}}
+									>
+									</div>
+								</React.Fragment>
+							))}
+							
+							{/* 日付・曜日部分 - スクロール可能 */}
+							<div className="overflow-x-auto border-t border-black" style={{gridArea: "scrollable",}} >
+								<div style={{ gridArea: "title-dates" }}>
+									<div
+										className="grid"
+										style={{ 
+											gridTemplateColumns: `repeat(${dates.length}, 30px)`
+										}}
+									>
+										{dates.map((date) => (
+											<div
+												key={`date-${date}`}
+												className="text-center border border-black bg-blue-900 p-2 text-white"
+												style={{ width: "30px", height: "30px" }}
+											>
+												{date}
+											</div>
+										))}
+									</div>
+								</div>
+								{/* 曜日部分 - スクロール可能 */}
+								<div
+									style={{ gridArea: "day-dates" }}
+								>
+									<div
+										className="grid"
+										style={{ gridTemplateColumns: `repeat(${dates.length}, 30px)` }}
+									>
+										{dates.map((_, i) => (
+											<div
+												key={`weekday${i}`}
+												className="text-center border border-black bg-blue-900 p-2 text-white"
+												style={{ width: "30px", height: "30px" }}
+											>
+												{days[(i+3 )% 7]} {/* 曜日データを繰り返し表示 */}
+											</div>
+										))}
+									</div>
+								</div>
+								{/* 空白行 */}
+								{tasks.map((_, rowIndex) => (
+									<div
+										key={`empty-row${rowIndex}`}
+										style={{ gridArea: "dates" }}
+									>
+										<div
+											key={`empty-grid-row${rowIndex}`}
+											className="grid"
+											style={{ gridTemplateColumns: `repeat(${dates.length}, 30px)` }}
+										>
+											{dates.map((_, colIndex) => (
+												<div
+													key={`empty-${rowIndex}-${colIndex}`}
+													className="text-center border border-dotted border-gray-100 bg-white"
+													style={{ width: "30px", height: "30px" }}
+												></div>
+											))}
+										</div>
+									</div>
+								))}
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -92,23 +182,14 @@ export default function Home() {
 
 				{/* 組織体制表 */}
 				<div className="flex items-center flex-col bg-blue-100 w-5/6 h-[280]" >
-					<div className="flex  bg-green-100 w-5/6 h-[60]">
-						<h2 className="flex items-center text-2xl w-1/2">ガントチャート</h2>
-						<div className="flex items-center w-1/2">
-							<div className="w-1/3">プロジェクト</div>
-							<div className="w-1/3">タスク</div>
-						</div>
+					<div className="flexbg-green-100 w-full h-[60]">
+						<h2 className="flex items-center justify-start text-2xl w-1/2">組織体制表</h2>
 					</div>
-					<div className="flex  bg-green-100 w-5/6 h-[180] my-2 pl-4">
+					<div className="w-full h-[240] my-2 ml-6">
 						表を作る
 					</div>
 				</div>
 			</div>
 		</div>
 	);
-}
-
-const ganttDays: React.CSSProperties = {
-	display: "grid",
-	gridTemplateColumns: "200px 100px repeat(42, 30px",
 }
