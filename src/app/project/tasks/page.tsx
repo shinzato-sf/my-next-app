@@ -1,5 +1,6 @@
 "use client"
-import { Tasks } from '@/app/types';
+import React from 'react';
+import { Tasks } from './../../types';
 import { useState } from 'react';
 
 export default function Home() {
@@ -97,7 +98,7 @@ export default function Home() {
 						</div>
 					</div>
 				</section>
-				<form action="/" className=" mx-auto ">
+				<form action="/project/shiftSchedule" className=" mx-auto ">
 					<button className="w-40 h-16 border-black border-solid rounded-lg bg-blue-800 text-white">
 						ボタン
 					</button>

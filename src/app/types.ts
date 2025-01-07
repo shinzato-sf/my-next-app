@@ -5,3 +5,9 @@ export interface Tasks {
 	collaborativeDeployment: string;
 	comment: string;
 }
+export interface Works {
+	work: string;
+	team: string;
+	topManagement: string;
+	collaborativeDeployment: string;
+}
