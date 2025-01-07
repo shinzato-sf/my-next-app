@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import React from "react";
 
 export const metadata: Metadata = {
 	title: "Next 練習ページ（ログイン済み）",

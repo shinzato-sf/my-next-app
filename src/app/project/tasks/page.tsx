@@ -1,5 +1,6 @@
 "use client"
-import { Tasks } from '@/app/types';
+import React from 'react';
+import { Tasks } from './../../types';
 import { useState } from 'react';
 
 export default function Home() {
@@ -67,7 +68,7 @@ export default function Home() {
 								{Object.keys(columnWidths).map((key, index) => (
 									<div
 										key={index}
-										className="table-cell align-middle"
+										className="table-cell align-middle pl-2"
 										style={{width: columnWidths[key as keyof Tasks]}}
 									>{key}</div>
 								))}
@@ -76,11 +77,11 @@ export default function Home() {
 						<div className="table-row-group overflow-auto">
 							{tasks.map((task, index) => (
 								<div key={index} className="table-row h-[78]">
-									<div key={`edit-${index}`} className="table-cell border-2 border-black align-middle">
+									<div key={`edit-${index}`} className="table-cell border-2 border-black align-middle pl-2">
 										操作
 									</div>
 									{Object.entries(task).map(([key, value], i) => (
-										<div key={`edit-col-${i}`} className="table-cell border-2 border-black align-middle">
+										<div key={`edit-col-${i}`} className="table-cell border-2 border-black align-middle pl-2">
 											{value}
 										</div>
 								))}
@@ -97,7 +98,7 @@ export default function Home() {
 						</div>
 					</div>
 				</section>
-				<form action="/project/select" className=" mx-auto ">
+				<form action="/project/shiftSchedule" className=" mx-auto ">
 					<button className="w-40 h-16 border-black border-solid rounded-lg bg-blue-800 text-white">
 						ボタン
 					</button>
